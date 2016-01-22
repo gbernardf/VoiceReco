@@ -1,13 +1,11 @@
 import wit
-import time
-import datetime
+import json
 
 access_token = 'CX6U6BQL7Y7GA7LXVG2CD6ONKY53TQJL'
 END_FILE_NAME = "_witResponses.json"
 
 def write_data_to_file( data ):
-	currentTime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') #2012-12-15 01:21:05
-	filename = currentTime + END_FILE_NAME
+	filename = "last" + END_FILE_NAME
 	fo = open(filename, "w")
 	fo.write( "[" + data + "]" )	
 	fo.close()
@@ -22,7 +20,9 @@ def get_user_inputs():
 			break
 		if(data != ""):
 			data += ","
-		data += wit.text_query( userInput, access_token )
+		response = wit.text_query( userInput, access_token )
+		data += response
+		print json.dumps(response, sort_keys=True,indent=4)
 
 	write_data_to_file( data )
 
