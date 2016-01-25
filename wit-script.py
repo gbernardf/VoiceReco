@@ -22,7 +22,6 @@ def get_user_inputs():
 			data += ","
 		response = wit.text_query( userInput, access_token )
 		data += response
-		print json.dumps(response, sort_keys=True,indent=4)
 
 	write_data_to_file( data )
 
