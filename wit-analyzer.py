@@ -1,8 +1,4 @@
 import json
-import temp_setter
-import temp_getter
-
-
 
 def parse_outcome( outcome ):
 	if( outcome["intent"] == "Set_temperature"):
