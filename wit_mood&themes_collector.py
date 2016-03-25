@@ -61,8 +61,8 @@ def get_themes_ids_from_item(item):
 		themes.append(theme["id"])
 	return themes
 
-#wit.init()
-#get_inputs()
+wit.init()
+get_inputs()
 get_search_results()
 
 print("closing now...\n")
