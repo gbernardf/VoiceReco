@@ -1,6 +1,7 @@
 import requests
 
 server_address = "http://localhost:8080/SpideoCentral"
+#server_address = "http://technicolor.dev.spideo.com"
 search_url = server_address + "/search/vod?"
 
 
