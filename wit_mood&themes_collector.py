@@ -39,15 +39,18 @@ def get_search_results():
 				search_theme_and_mood_id(item)
 
 def search_theme(item):
-	print search_in_central.do_get_request_for_themes(get_themes_ids_from_item(item))
+	if(is_good_candidate(item)):
+		print search_in_central.do_get_request_for_themes(get_themes_ids_from_item(item))
 
 def search_mood(item):
-	print search_in_central.do_get_request_for_wishes(get_moods_ids_from_item(item))
+	if(is_good_candidate(item)):
+		print search_in_central.do_get_request_for_wishes(get_moods_ids_from_item(item))
 
 def search_theme_and_mood_id(item):
-	moods = get_moods_ids_from_item(item)
-	themes = get_themes_ids_from_item(item)
-	print(search_in_central.do_get_request_for_wishes_and_themes(moods, themes))
+	if(is_good_candidate(item)):
+		moods = get_moods_ids_from_item(item)
+		themes = get_themes_ids_from_item(item)
+		print(search_in_central.do_get_request_for_wishes_and_themes(moods, themes))
 
 def get_moods_ids_from_item(item):
 	moods = []
@@ -60,6 +63,9 @@ def get_themes_ids_from_item(item):
 	for theme in item["outcomes"][0]["entities"]["theme"]:
 		themes.append(theme["id"])
 	return themes
+
+def is_good_candidate(item):
+	return item["outcomes"][0]["confidence"] >= 0.7
 
 wit.init()
 get_inputs()
